@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">EasyBudget</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="hello_emma">Hello Emma!</string>
+    <string name="hello_twitter">Hello Twitter</string>
+    <string name="lbl_username">Username</string>
+    <string name="lbl_enter_username">Enter your username</string>
+    <string name="lbl_pwd">Password</string>
+    <string name="lbl_enter_pwd">Enter your password</string>
+    <string name="lbl_login">Login</string>
     <string name="action_settings">Settings</string>
+    <string name="no_tweet_found">No Tweet Found</string>
+    <string name="title_activity_tweet_list">TweetListActivity</string>
+    <string name="title_activity_tweet_detail">TweetDetailActivity</string>
 </resources>
