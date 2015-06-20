@@ -10,40 +10,37 @@ import android.widget.ListView;
 
 import org.no_ip.magicperf2.easybudget.models.Tweet;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TweetListActivity extends ListActivity {
     private ArrayAdapter tweetItemArrayAdapter;
-    private List<Tweet> tweets;
+    private List<Tweet> tweetsRead;
+    private List<Tweet> tweetsWrite;
     private static final String TWEETS_CACHE_FILE = "tweet_cache.ser";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tweet_list);
 
-        tweets = new ArrayList<Tweet>();
-        for ( int i = 0; i < 20; i++ ) {
-            Tweet tweet = new Tweet();
-            tweet.setTitle("A nice header for Tweet # " +i);
-            tweet.setBody("Some random body text for the tweet # " +i);
-            tweets.add(tweet);
+        try {
+            FileInputStream fis = openFileInput(TWEETS_CACHE_FILE);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            tweetsRead = (List<Tweet>) ois.readObject();
+            //close file handles
+            ois.close();
+            fis.close();
+        }catch (Exception e){
+            //log exceptions (at least)
+            Log.e("codelearn", "Error reading tweets", e);
         }
 
-        try{
-            FileOutputStream fos = openFileOutput(TWEETS_CACHE_FILE, MODE_PRIVATE);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(tweets);
-            Log.d("codelearn", "Successfully wrote tweets to the file.");
-            oos.close();
-            fos.close();
-        }catch(Exception e){
-            Log.e("codelearn", "Error writing tweets", e);
-        }
+        tweetsWrite = new ArrayList<Tweet>();
+        new AsyncFetchTweets(this).execute(tweetsWrite);
 
-        tweetItemArrayAdapter = new TweetAdapter(this, tweets);
+        tweetItemArrayAdapter = new TweetAdapter(this, tweetsRead);
         setListAdapter(tweetItemArrayAdapter);
     }
     @Override
