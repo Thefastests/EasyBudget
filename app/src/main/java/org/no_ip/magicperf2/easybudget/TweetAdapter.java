@@ -33,13 +33,13 @@ public class TweetAdapter extends ArrayAdapter<Tweet>{
             v = inflater.inflate(R.layout.row_tweet, parent, false);
         }
         Tweet tweet = tweets.get(position);
-        TextView tittle = (TextView) v.findViewById(R.id.tweetTitle);
+        TextView tittle = (TextView) v.findViewById(R.id.tweetDefaultTitle);
         tittle.setText(tweet.getTitle());
 
-        TextView body = (TextView) v.findViewById(R.id.tweetBody);
+        TextView body = (TextView) v.findViewById(R.id.tweetDefaultBody);
         body.setText(tweet.getBody());
 
-        TextView date = (TextView) v.findViewById(R.id.tweetDate);
+        TextView date = (TextView) v.findViewById(R.id.tweetDefaultDate);
         date.setText(tweet.getDate());
 
         return v;

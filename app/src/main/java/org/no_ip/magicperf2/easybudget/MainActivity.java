@@ -37,9 +37,9 @@ public class MainActivity extends ActionBarActivity {
                 Log.d("Codelearn", "username caught - " + usernameValue);
                 SharedPreferences prefs = getSharedPreferences("codelearn_twitter", MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("key1",usernameValue);
-                editor.putString("key2",passwordValue);
-                editor.apply();
+                //editor.putString("key1",usernameValue);
+                //editor.putString("key2",passwordValue);
+                //editor.apply();
                 Intent intent = new Intent(MainActivity.this, TweetListActivity.class);
                 startActivity(intent);
             }

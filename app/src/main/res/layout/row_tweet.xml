@@ -21,7 +21,7 @@
 
 
         <TextView
-            android:id="@+id/tweetTitle"
+            android:id="@+id/tweetDefaultTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Header Text"
@@ -32,7 +32,7 @@
 
 
         <TextView
-            android:id="@+id/tweetBody"
+            android:id="@+id/tweetDefaultBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tweet body text here"
@@ -45,7 +45,7 @@
 
 
         <TextView
-            android:id="@+id/tweetDate"
+            android:id="@+id/tweetDefaultDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="20 Nov 2013"

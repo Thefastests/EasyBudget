@@ -24,6 +24,10 @@
             android:name=".TweetDetailActivity"
             android:label="@string/title_activity_tweet_detail" >
         </activity>
+        <activity
+            android:name=".TweetAddActivity"
+            android:label="@string/title_activity_tweet_add" >
+        </activity>
     </application>
 
 </manifest>

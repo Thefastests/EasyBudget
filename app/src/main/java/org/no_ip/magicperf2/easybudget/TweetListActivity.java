@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import org.no_ip.magicperf2.easybudget.models.Tweet;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class TweetListActivity extends ListActivity {
     private List<Tweet> tweetsWrite;
     private static final String TWEETS_CACHE_FILE = "tweet_cache.ser";
     private Button addTweet;
+    private static TweetListActivity instance;
 
     public void renderTweets(List<Tweet> tweets) {
         try{
@@ -28,23 +31,29 @@ public class TweetListActivity extends ListActivity {
         }
     }
 
+    public static TweetListActivity getInstance(){
+        return instance;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tweet_list);
-
+        instance=this;
         tweetsWrite = new ArrayList<Tweet>();
         tweetsRead = new ArrayList<Tweet>();
 
-        new AsynchWriteTweets(this).execute(tweetsWrite);
-        final TweetListActivity tweetListActivity = this;
+        //new AsynchWriteTweets(this).execute(tweetsWrite);
+        //final TweetListActivity tweetListActivity = this;
 
         addTweet = (Button) findViewById(R.id.addTweetButton);
         addTweet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AsyncAddTweet(tweetListActivity).execute(tweetsWrite);
-                new AsyncFetchTweets(tweetListActivity).execute(tweetsRead);
+                Intent intent = new Intent(TweetListActivity.this, TweetAddActivity.class);
+                startActivity(intent);
+                //new AsyncAddTweet(tweetListActivity).execute(tweetsWrite);
+                //new AsyncFetchTweets(tweetListActivity).execute(tweetsRead);
             }
         });
 

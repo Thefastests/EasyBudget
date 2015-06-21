@@ -29,6 +29,7 @@ public class AsynchWriteTweets extends AsyncTask<List<Tweet>,Void,Void> {
                 Tweet tweet = new Tweet();
                 tweet.setTitle("A nice header for Tweet # " +i);
                 tweet.setBody("Some random body text for the tweet # " +i);
+                tweet.setDate("Today");
                 tweetsWrite.add(tweet);
             }
         }catch(Exception e){

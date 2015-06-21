@@ -38,7 +38,7 @@ public class Tweet implements Serializable{
         return date;
     }
 
-    public void setDate(String body) {
+    public void setDate(String date) {
         this.date = date;
     }
 }
