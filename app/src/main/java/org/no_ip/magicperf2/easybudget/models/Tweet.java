@@ -12,6 +12,7 @@ public class Tweet implements Serializable{
     private String id;
     private String title;
     private String body;
+    private String date;
 
     public String getId() {
         return id;
@@ -31,5 +32,13 @@ public class Tweet implements Serializable{
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String body) {
+        this.date = date;
     }
 }

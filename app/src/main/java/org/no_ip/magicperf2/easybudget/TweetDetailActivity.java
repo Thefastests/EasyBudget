@@ -4,6 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import org.no_ip.magicperf2.easybudget.models.Tweet;
 
 
 public class TweetDetailActivity extends ActionBarActivity {
@@ -12,6 +15,15 @@ public class TweetDetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tweet_detail);
+        Tweet tweet = (Tweet) getIntent().getSerializableExtra("tweet");
+        TextView tittle = (TextView) findViewById(R.id.tweetTitle);
+        tittle.setText(tweet.getTitle());
+
+        TextView body = (TextView) findViewById(R.id.tweetBody);
+        body.setText(tweet.getBody());
+
+        TextView date = (TextView) findViewById(R.id.tweetDate);
+        date.setText(tweet.getDate());
     }
 
     @Override

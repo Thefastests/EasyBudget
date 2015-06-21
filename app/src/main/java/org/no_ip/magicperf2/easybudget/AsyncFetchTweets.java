@@ -1,13 +1,13 @@
 package org.no_ip.magicperf2.easybudget;
 
-
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import org.no_ip.magicperf2.easybudget.models.Tweet;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,41 +15,35 @@ import java.util.List;
 /**
  * Created by steve on 6/15/15.
  */
-public class AsyncFetchTweets extends AsyncTask<List<Tweet>,Void,Void> {
+public class AsyncFetchTweets extends AsyncTask<List<Tweet>,Void,List<Tweet>> {
 
-    private List<Tweet> tweetsWrite;
+    private List<Tweet> tweetsRead;
     private static final String TWEETS_CACHE_FILE = "tweet_cache.ser";
-    private Context context;
+    private TweetListActivity activity;
 
-    public AsyncFetchTweets(Context con){
-        context = con;
+    public AsyncFetchTweets(TweetListActivity act){
+        activity = act;
     }
 
     @Override
-    protected Void doInBackground(List<Tweet>... params) {
-        tweetsWrite = params[0];
-
-        try{
-            Thread.sleep(5000);
-            for ( int i = 0; i < 20; i++ ) {
-                Tweet tweet = new Tweet();
-                tweet.setTitle("A nice header for Tweet # " +i);
-                tweet.setBody("Some random body text for the tweet # " +i);
-                tweetsWrite.add(tweet);
-            }
-        }catch(Exception e){
-
+    protected List<Tweet> doInBackground(List<Tweet>... params) {
+        tweetsRead = params[0];
+        try {
+            //Thread.sleep(5000);
+            FileInputStream fis = activity.openFileInput(TWEETS_CACHE_FILE);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            tweetsRead = (List<Tweet>) ois.readObject();
+            //close file handles
+            ois.close();
+            fis.close();
+        }catch (Exception e){
+            //log exceptions (at least)
+            Log.e("codelearn", "Error reading tweets", e);
         }
-        try{
-            FileOutputStream fos = context.openFileOutput(TWEETS_CACHE_FILE, 0);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(tweetsWrite);
-            Log.d("codelearn", "Successfully wrote tweets to the file.");
-            oos.close();
-            fos.close();
-        }catch(Exception e){
-            Log.e("codelearn", "Error writing tweets", e);
-        }
-        return null;//tweetsWrite;
+        return tweetsRead;
+    }
+    protected void onPostExecute(List<Tweet> result) {
+        //pass result to main UI thread to show the final data
+        activity.renderTweets(result);
     }
 }
