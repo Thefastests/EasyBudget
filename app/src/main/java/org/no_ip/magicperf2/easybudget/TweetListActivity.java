@@ -6,13 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-
 import org.no_ip.magicperf2.easybudget.models.Tweet;
-
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +17,7 @@ public class TweetListActivity extends ListActivity {
     private List<Tweet> tweetsRead;
     private List<Tweet> tweetsWrite;
     private static final String TWEETS_CACHE_FILE = "tweet_cache.ser";
+    private Button addTweet;
 
     public void renderTweets(List<Tweet> tweets) {
         try{
@@ -38,7 +35,19 @@ public class TweetListActivity extends ListActivity {
 
         tweetsWrite = new ArrayList<Tweet>();
         tweetsRead = new ArrayList<Tweet>();
+
         new AsynchWriteTweets(this).execute(tweetsWrite);
+        final TweetListActivity tweetListActivity = this;
+
+        addTweet = (Button) findViewById(R.id.addTweetButton);
+        addTweet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AsyncAddTweet(tweetListActivity).execute(tweetsWrite);
+                new AsyncFetchTweets(tweetListActivity).execute(tweetsRead);
+            }
+        });
+
         new AsyncFetchTweets(this).execute(tweetsRead);
     }
     @Override
