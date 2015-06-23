@@ -28,6 +28,22 @@
             android:name=".TweetAddActivity"
             android:label="@string/title_activity_tweet_add" >
         </activity>
+        <activity
+            android:name=".BudgetActivity"
+            android:label="@string/title_activity_budget" >
+        </activity>
+        <activity
+            android:name=".MonthAddActivity"
+            android:label="@string/title_activity_month_add" >
+        </activity>
+        <activity
+            android:name=".MonthActivity"
+            android:label="@string/title_activity_month" >
+        </activity>
+        <activity
+            android:name=".CategoryAddActivity"
+            android:label="@string/title_activity_category_add" >
+        </activity>
     </application>
 
 </manifest>

@@ -40,7 +40,8 @@ public class MainActivity extends ActionBarActivity {
                 //editor.putString("key1",usernameValue);
                 //editor.putString("key2",passwordValue);
                 //editor.apply();
-                Intent intent = new Intent(MainActivity.this, TweetListActivity.class);
+                //Intent intent = new Intent(MainActivity.this, TweetListActivity.class);
+                Intent intent = new Intent(MainActivity.this, BudgetActivity.class);
                 startActivity(intent);
             }
         });

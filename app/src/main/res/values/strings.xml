@@ -17,4 +17,10 @@
     <string name="add_tittle">Add Tittle</string>
     <string name="add_body">Add Body</string>
     <string name="add_date">Add Date</string>
+    <string name="monthName">Add Month Name</string>
+    <string name="catName">Add Category Name</string>
+    <string name="title_activity_budget">BudgetActivity</string>
+    <string name="title_activity_month_add">MonthAddActivity</string>
+    <string name="title_activity_month">MonthActivity</string>
+    <string name="title_activity_category_add">CategoryAddActivity</string>
 </resources>
