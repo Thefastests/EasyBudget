@@ -17,18 +17,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TweetListActivity"
-            android:label="@string/title_activity_tweet_list" >
-        </activity>
-        <activity
-            android:name=".TweetDetailActivity"
-            android:label="@string/title_activity_tweet_detail" >
-        </activity>
-        <activity
-            android:name=".TweetAddActivity"
-            android:label="@string/title_activity_tweet_add" >
-        </activity>
-        <activity
             android:name=".BudgetActivity"
             android:label="@string/title_activity_budget" >
         </activity>
@@ -43,6 +31,18 @@
         <activity
             android:name=".CategoryAddActivity"
             android:label="@string/title_activity_category_add" >
+        </activity>
+        <activity
+            android:name=".CategoryActivity"
+            android:label="@string/title_activity_category" >
+        </activity>
+        <activity
+            android:name=".DeailsAddActivity"
+            android:label="@string/title_activity_deails_add" >
+        </activity>
+        <activity
+            android:name=".DescriptionDetailsActivity"
+            android:label="@string/title_activity_description_details" >
         </activity>
     </application>
 

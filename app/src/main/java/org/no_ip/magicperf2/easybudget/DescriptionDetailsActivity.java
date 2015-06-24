@@ -6,30 +6,30 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.no_ip.magicperf2.easybudget.models.Tweet;
+import org.no_ip.magicperf2.easybudget.models.Details;
+import org.w3c.dom.Text;
 
 
-public class TweetDetailActivity extends ActionBarActivity {
+public class DescriptionDetailsActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tweet_detail);
-        Tweet tweet = (Tweet) getIntent().getSerializableExtra("tweet");
-        TextView tittle = (TextView) findViewById(R.id.tweetTitle);
-        tittle.setText(tweet.getTitle());
+        setContentView(R.layout.activity_description_details);
+        Details details = (Details) getIntent().getSerializableExtra("detail");
+        TextView tittle = (TextView) findViewById(R.id.desTitle);
+        TextView price = (TextView) findViewById(R.id.desPrice);
+        TextView date = (TextView) findViewById(R.id.desDate);
 
-        TextView body = (TextView) findViewById(R.id.tweetBody);
-        body.setText(tweet.getBody());
-
-        TextView date = (TextView) findViewById(R.id.tweetDate);
-        date.setText(tweet.getDate());
+        tittle.setText(details.getDescription());
+        price.setText(details.getQuantity().toString());
+        date.setText(details.getDate());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_tweet_detail, menu);
+        getMenuInflater().inflate(R.menu.menu_description_details, menu);
         return true;
     }
 

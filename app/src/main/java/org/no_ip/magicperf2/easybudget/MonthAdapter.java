@@ -1,6 +1,7 @@
 package org.no_ip.magicperf2.easybudget;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,14 +22,13 @@ public class MonthAdapter extends ArrayAdapter<Category> {
     private List<Category> categories;
 
     public MonthAdapter(Activity activity, List<Category> items){
-        super(activity, R.layout.row_budget, items);
+        super(activity, R.layout.row_month, items);
         categories = items;
         inflater = activity.getWindow().getLayoutInflater();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-
         View v = convertView;
         if (v == null) {
             v = inflater.inflate(R.layout.row_month, parent, false);

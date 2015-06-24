@@ -3,7 +3,7 @@
 
     <string name="hello_world">Hello World!</string>
     <string name="hello_emma">Hello Emma!</string>
-    <string name="hello_twitter">Hello Twitter</string>
+    <string name="welcome">WELCOME</string>
     <string name="lbl_username">Username</string>
     <string name="lbl_enter_username">Enter your username</string>
     <string name="lbl_pwd">Password</string>
@@ -19,8 +19,14 @@
     <string name="add_date">Add Date</string>
     <string name="monthName">Add Month Name</string>
     <string name="catName">Add Category Name</string>
+    <string name="detName">Add Description</string>
+    <string name="detTotal">Add Price</string>
+    <string name="detDate">Add Date</string>
     <string name="title_activity_budget">BudgetActivity</string>
     <string name="title_activity_month_add">MonthAddActivity</string>
     <string name="title_activity_month">MonthActivity</string>
     <string name="title_activity_category_add">CategoryAddActivity</string>
+    <string name="title_activity_category">CategoryActivity</string>
+    <string name="title_activity_deails_add">DeailsAddActivity</string>
+    <string name="title_activity_description_details">DescriptionDetailsActivity</string>
 </resources>

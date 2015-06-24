@@ -42,6 +42,7 @@ public class BudgetActivity extends ListActivity {
                 //new AsyncAddMonth(BudgetActivity.this,month).execute(months);
             }
         });
+        //renderMonths(months);
         new AsyncFetchMonth(this).execute(months);
     }
 
@@ -86,6 +87,7 @@ public class BudgetActivity extends ListActivity {
         Intent intent = new Intent(this, MonthActivity.class);
         intent.putExtra("month",month);
         intent.putExtra("budget",budget);
+        intent.putExtra("monthPosition",position);
         startActivity(intent);
     }
 }

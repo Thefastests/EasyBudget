@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import org.no_ip.magicperf2.easybudget.models.Category;
+import org.no_ip.magicperf2.easybudget.models.Month;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -17,13 +18,16 @@ import java.util.List;
  */
 public class AsyncAddCategory extends AsyncTask<List<Category>,Void,List<Category>> {
     private List<Category> categoriesRead;
+    private List<Month> monthsRead;
     private static final String MONTHS_CACHE_FILE = "month_cache.ser";
     private CategoryAddActivity activity;
     private Category categoryToAdd;
+    private int monthPos;
 
-    public AsyncAddCategory(CategoryAddActivity act,Category category){
+    public AsyncAddCategory(CategoryAddActivity act,Category category, int pos){
         activity = act;
         categoryToAdd=category;
+        monthPos=pos;
     }
 
     @Override
@@ -33,25 +37,26 @@ public class AsyncAddCategory extends AsyncTask<List<Category>,Void,List<Categor
             //Thread.sleep(5000);
             FileInputStream fis = activity.openFileInput(MONTHS_CACHE_FILE);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            categoriesRead = (List<Category>) ois.readObject();
-            if(categoriesRead==null) categoriesRead = new ArrayList<Category>();
+            monthsRead = (List<Month>) ois.readObject();
+            //categoriesRead = monthsRead.get(monthPos).getCategories();
             //close file handles
             ois.close();
             fis.close();
         }catch (Exception e){
             //log exceptions (at least)
-            Log.e("codelearn", "Error reading months", e);
+            Log.e("codelearn", "Error reading cat", e);
         }
-        categoriesRead.add(categoryToAdd);
+        monthsRead.get(monthPos).getCategories().add(categoryToAdd);
+        categoriesRead=monthsRead.get(monthPos).getCategories();
         try{
             FileOutputStream fos = activity.openFileOutput(MONTHS_CACHE_FILE, 0);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(categoriesRead);
-            Log.d("codelearn", "Successfully wrote months to the file.");
+            oos.writeObject(monthsRead);
+            Log.d("codelearn", "Successfully wrote cat to the file.");
             oos.close();
             fos.close();
         }catch(Exception e){
-            Log.e("codelearn", "Error writing months", e);
+            Log.e("codelearn", "Error writing cat", e);
         }
         return categoriesRead;
     }

@@ -20,7 +20,7 @@ public class MainActivity extends ActionBarActivity {
         String valueUser = prefs.getString("key1", null);
         String valuePass = prefs.getString("key2", null);
         if(valueUser!=null && valuePass!=null){
-            Intent intent = new Intent(this, TweetListActivity.class);
+            Intent intent = new Intent(this, BudgetActivity.class);
             startActivity(intent);
             finish();
         }
@@ -40,7 +40,6 @@ public class MainActivity extends ActionBarActivity {
                 //editor.putString("key1",usernameValue);
                 //editor.putString("key2",passwordValue);
                 //editor.apply();
-                //Intent intent = new Intent(MainActivity.this, TweetListActivity.class);
                 Intent intent = new Intent(MainActivity.this, BudgetActivity.class);
                 startActivity(intent);
             }

@@ -22,7 +22,8 @@ import java.util.List;
 public class MonthActivity extends ListActivity {
     private Button addCategory;
     private Month month;
-    private Budget budget;
+    //private Budget budget;
+    private int monthPosition;
     private static MonthActivity monthInstance;
     private ArrayAdapter categoryItemArrayAdapter;
     private List<Category> categories;
@@ -34,7 +35,10 @@ public class MonthActivity extends ListActivity {
 
         monthInstance = this;
         month = (Month) getIntent().getSerializableExtra("month");
-        budget = (Budget) getIntent().getSerializableExtra("budget");
+        //budget = (Budget) getIntent().getSerializableExtra("budget");
+        monthPosition = getIntent().getIntExtra("monthPosition",monthPosition);
+        Log.d("codelearn","monthPosition "+monthPosition);
+        //month = budget.getMonths().get(monthPosition);
         categories = month.getCategories();
         addCategory = (Button) findViewById(R.id.addCategoryButton);
         addCategory.setOnClickListener(new View.OnClickListener() {
@@ -42,11 +46,13 @@ public class MonthActivity extends ListActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MonthActivity.this,CategoryAddActivity.class);
                 intent.putExtra("month",month);
-                intent.putExtra("budget",budget);
+                //intent.putExtra("budget",budget);
+                intent.putExtra("monthPos",monthPosition);
                 startActivity(intent);
             }
         });
-        //new AsyncFetchCategory(this).execute(categories);
+        //renderCategories(categories);
+        new AsyncFetchCategory(this,monthPosition).execute(categories);
     }
 
     public static MonthActivity getMonthInstance(){
@@ -87,9 +93,11 @@ public class MonthActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         Category category = (Category) getListAdapter().getItem(position);
-        Intent intent = new Intent(this, TweetDetailActivity.class);
-        intent.putExtra("month",category);
-        intent.putExtra("budget",budget);
+        Intent intent = new Intent(this, CategoryActivity.class);
+        intent.putExtra("category",category);
+        intent.putExtra("monthPosition",monthPosition);
+        intent.putExtra("categoryPosition",position);
+        //intent.putExtra("budget",budget);
         startActivity(intent);
     }
 }

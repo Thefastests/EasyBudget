@@ -1,9 +1,11 @@
 package org.no_ip.magicperf2.easybudget.models;
 
+import java.io.Serializable;
+
 /**
  * Created by steve on 6/21/15.
  */
-public class Details {
+public class Details implements Serializable {
     private String description;
     private String date;
     private Double quantity;

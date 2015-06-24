@@ -17,13 +17,14 @@ import java.util.List;
 
 public class CategoryAddActivity extends ActionBarActivity {
     private Button addNewCategory;
-
+    int pos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_add);
-        Budget budget = (Budget) getIntent().getSerializableExtra("budget");
+        //Budget budget = (Budget) getIntent().getSerializableExtra("budget");
         Month month = (Month) getIntent().getSerializableExtra("month");
+        pos = getIntent().getIntExtra("monthPos",pos);
         final List<Category> categoryList = month.getCategories();
         addNewCategory = (Button) findViewById(R.id.addNewCat);
         addNewCategory.setOnClickListener(new View.OnClickListener() {
@@ -31,7 +32,7 @@ public class CategoryAddActivity extends ActionBarActivity {
             public void onClick(View v) {
                 TextView catName = (TextView)findViewById(R.id.categoryNewName);
                 Category category = new Category(catName.getText().toString());
-                //new AsyncAddCategory(CategoryAddActivity.this,category).execute(categoryList);
+                new AsyncAddCategory(CategoryAddActivity.this,category,pos).execute(categoryList);
                 finish();
             }
         });
