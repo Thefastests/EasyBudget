@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.no_ip.magicperf2.easybudget" >
+    package="no_ip_org.magicperf2.easybudget" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/launcher_ico"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -17,32 +19,36 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BudgetActivity"
-            android:label="@string/title_activity_budget" >
+            android:name=".BudgetListActivity"
+            android:label="@string/title_activity_budget_list" >
         </activity>
         <activity
-            android:name=".MonthAddActivity"
-            android:label="@string/title_activity_month_add" >
+            android:name=".BudgetAddMonthActivity"
+            android:label="@string/title_activity_budget_add_month" >
         </activity>
         <activity
-            android:name=".MonthActivity"
-            android:label="@string/title_activity_month" >
+            android:name=".MonthListActivity"
+            android:label="@string/title_activity_month_list" >
         </activity>
         <activity
-            android:name=".CategoryAddActivity"
-            android:label="@string/title_activity_category_add" >
+            android:name=".MonthAddCategoryActivity"
+            android:label="@string/title_activity_month_add_category" >
         </activity>
         <activity
-            android:name=".CategoryActivity"
-            android:label="@string/title_activity_category" >
+            android:name=".CategoryListActivity"
+            android:label="@string/title_activity_category_list" >
         </activity>
         <activity
-            android:name=".DeailsAddActivity"
-            android:label="@string/title_activity_deails_add" >
+            android:name=".CatAddDesActivity"
+            android:label="@string/title_activity_cat_add_des" >
         </activity>
         <activity
-            android:name=".DescriptionDetailsActivity"
-            android:label="@string/title_activity_description_details" >
+            android:name=".DetailsActivity"
+            android:label="@string/title_activity_details" >
+        </activity>
+        <activity
+            android:name=".RegistrationActivity"
+            android:label="@string/title_activity_registration" >
         </activity>
     </application>
 

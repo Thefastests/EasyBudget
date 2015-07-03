@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 22
+    buildToolsVersion "23.0.0 rc2"
 
     defaultConfig {
-        applicationId "org.no_ip.magicperf2.easybudget"
-        minSdkVersion 18
-        targetSdkVersion 21
+        applicationId "no_ip_org.magicperf2.easybudget"
+        minSdkVersion 19
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
