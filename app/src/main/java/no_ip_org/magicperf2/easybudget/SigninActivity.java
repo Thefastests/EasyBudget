@@ -21,17 +21,15 @@ public class SigninActivity  extends AsyncTask<String,Void,String> {
     private TextView statusField,roleField;
     private Context context;
     private int byGetOrPost = 0;
+    private String link;
 
     //flag 0 means get and 1 means post.(By default it is get.)
-    public SigninActivity(Context context,TextView statusField,TextView roleField,int flag) {
+    public SigninActivity(Context context,TextView statusField,TextView roleField,int flag,String link) {
         this.context = context;
         this.statusField = statusField;
         this.roleField = roleField;
         byGetOrPost = flag;
-    }
-
-    protected void onPreExecute(){
-
+        this.link=link;
     }
 
     @Override
@@ -41,10 +39,10 @@ public class SigninActivity  extends AsyncTask<String,Void,String> {
                 String username = (String)arg0[0];
                 String password = (String)arg0[1];
 
-                String link="http://192.168.0.23/login.php";
                 String data  = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(username, "UTF-8");
                 data += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
 
+                Log.d("EasyBudget","Link:"+link);
                 URL url = new URL(link);
                 URLConnection conn = url.openConnection();
 
@@ -75,12 +73,14 @@ public class SigninActivity  extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result){
         Log.d("EasyBudget", "result: " + result);
-        if(result==null||result.equals(null)||result.equals("admin")||result.equals("")){
-            Toast.makeText(context,"Login Successful "+result,Toast.LENGTH_SHORT).show();
+        if(result.equals("<!DOCTYPE html>")){
+            Toast.makeText(context,"Login Successful",Toast.LENGTH_SHORT).show();
             MainActivity.getInstance().authenticateLogin();
         }
-        else
+        else{
             Toast.makeText(context,"Login FAILED! "+result,Toast.LENGTH_SHORT).show();
+            MainActivity.getInstance().getProgress().dismiss();
+        }
         //this.statusField.setText("Login Successful");
         //this.roleField.setText(result);
     }

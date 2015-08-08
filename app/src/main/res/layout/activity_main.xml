@@ -31,32 +31,32 @@
         android:id="@+id/usernameET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/username"
         android:layout_marginLeft="35dp"
-        android:layout_toRightOf="@+id/username"
-        android:hint="supermode75" >
-        <requestFocus />
+        android:hint="abc@server.com"
+        android:layout_below="@+id/username"
+        android:layout_alignStart="@+id/header"
+        android:layout_alignEnd="@+id/header">
     </EditText>
 
     <TextView
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/username"
-        android:layout_below="@+id/username"
-        android:layout_marginTop="40dp"
         android:text="Password:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/usernameET"
+        android:layout_alignStart="@+id/username"
+        android:layout_marginTop="31dp" />
 
     <EditText
         android:id="@+id/passwordET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/password"
-        android:layout_alignLeft="@+id/usernameET"
-        android:layout_alignRight="@+id/usernameET"
-        android:hint="testpass"
-        android:inputType="textPassword" />
+        android:hint="password"
+        android:inputType="textPassword"
+        android:layout_below="@+id/password"
+        android:layout_alignStart="@+id/usernameET"
+        android:layout_alignEnd="@+id/regBtn" />
 
     <Button
         android:id="@+id/loginBtn"
@@ -64,8 +64,9 @@
         android:layout_height="wrap_content"
         android:onClick="loginPost"
         android:text="Login"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/header" />
+        android:layout_below="@+id/passwordET"
+        android:layout_alignStart="@+id/header"
+        android:layout_marginTop="67dp" />
 
     <Button
         android:id="@+id/regBtn"

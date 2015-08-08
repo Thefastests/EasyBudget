@@ -17,9 +17,11 @@ import java.net.URLEncoder;
  */
 public class Registration extends AsyncTask<String,Void,String> {
     private Context context;
+    private String link;
 
-    public Registration(Context context){
+    public Registration(Context context, String link){
         this.context=context;
+        this.link = link;
     }
     @Override
     protected String doInBackground(String... arg0) {
@@ -27,7 +29,6 @@ public class Registration extends AsyncTask<String,Void,String> {
             String username = (String)arg0[0];
             String password = (String)arg0[1];
 
-            String link="http://192.168.0.23/registration.php";
             String data  = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(username, "UTF-8");
             data += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
             URL url = new URL(link);
