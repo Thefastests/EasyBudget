@@ -11,11 +11,13 @@ import android.widget.TextView;
 public class RegistrationActivity extends ActionBarActivity {
     private TextView username;
     private TextView password;
+    private String link;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        link = getIntent().getStringExtra("link");
     }
 
     @Override
@@ -43,7 +45,7 @@ public class RegistrationActivity extends ActionBarActivity {
     public void register(View v){
         username = (TextView)findViewById(R.id.newUsername);
         password = (TextView)findViewById(R.id.newPassword);
-        new Registration(this).execute(username.getText().toString(),password.getText().toString());
+        new Registration(this,link).execute(username.getText().toString(),password.getText().toString());
         finish();
     }
 }

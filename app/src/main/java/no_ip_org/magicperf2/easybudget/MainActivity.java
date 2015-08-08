@@ -1,6 +1,7 @@
 package no_ip_org.magicperf2.easybudget;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +21,9 @@ public class MainActivity extends Activity {
     private EditText password;
     private Budget budget;
     private static final String FILE_NAME="budget.ser";
+    private final String LINKLOCAL="http://easybudgetapp.com/signin.php";
     private static MainActivity instance;
+    private ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,8 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this,BudgetListActivity.class);
         intent.putExtra("budget", budget);
         startActivity(intent);
+        if(progress!=null)
+            progress.dismiss();
     }
 
     private Budget getBudget(){
@@ -61,14 +66,23 @@ public class MainActivity extends Activity {
         budget=null;
         instance = this;
     }
+
     public void loginPost(View view){
+        progress = ProgressDialog.show(this, "Authenticating",
+                "Please wait while we connect you", true);
         String usernameField = username.getText().toString();
         String passwordField = password.getText().toString();
         TextView status=null,role=null;
-        new SigninActivity(this,status,role,1).execute(usernameField,passwordField);
+        new SigninActivity(this,status,role,1,LINKLOCAL).execute(usernameField, passwordField);
     }
+
     public void registerUser(View view){
         Intent intent=new Intent(MainActivity.this,RegistrationActivity.class);
+        intent.putExtra("link","http://easybudgetapp.com/signup.php");
         startActivity(intent);
+    }
+
+    public ProgressDialog getProgress(){
+        return progress;
     }
 }
