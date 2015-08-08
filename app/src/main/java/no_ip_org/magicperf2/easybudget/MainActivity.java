@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
     private EditText password;
     private Budget budget;
     private static final String FILE_NAME="budget.ser";
-    private final String LINKLOCAL="http://easybudgetapp.com/signin.php";
+    private final String LINKLOCAL="http://easybudgetapp.com/signin.phphg";
     private static MainActivity instance;
     private ProgressDialog progress;
 
